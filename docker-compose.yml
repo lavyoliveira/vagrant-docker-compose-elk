@@ -3,6 +3,7 @@ services:
     image: prom/prometheus
     volumes:
       - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./configs/alerts.rules:/etc/prometheus/alerts.rules
     ports:
       - "9090:9090"
 
@@ -18,8 +19,8 @@ services:
 
   alertmanager:
     image: prom/alertmanager
-    # volumes:
-    #   - ./configs/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    volumes:
+      - ./configs/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     ports:
       - "9093:9093"
 
